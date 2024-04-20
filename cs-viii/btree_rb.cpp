@@ -222,7 +222,8 @@ Node* deleteNode(Tree* t, int v){
 }
 
 void adjust(Tree* t, Node* n){
-    while(n->parent->color = false){
+    //comprobar si tiene padre en primera? xd
+    while(n->parent->color == false){
         if(n->parent = n->parent->parent->left){
             Node* tio = n->parent->parent->right;
             if(tio->color = false){
@@ -267,6 +268,7 @@ void adjust(Tree* t, Node* n){
 void insert(Tree* t, int v){
     Node* new_node = createNode(v);
     if(t == nullptr){
+        t = new Tree; // crear el arbol (inicializar)
         t->root = new_node; //ERROR
     }
     else{ insertRecursively(t->root, new_node); }
