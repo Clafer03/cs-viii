@@ -28,7 +28,13 @@ void addEdge(Graph* g, int src, int dst, int w, int index){
 }
 
 void printMatrix(vector<vector<int>>& matrix){
+    cout << "-\t";
+    for(int h = 0; h < matrix.size(); h++){
+        cout << h << "\t";
+    }
+    cout << endl;
     for(int i = 0; i < matrix.size(); i++){
+        cout << i << "\t";
         for( int j = 0; j < matrix[i].size(); j++){
             if(matrix[i][j] == INT_MAX){
                 cout << "INF\t";
@@ -90,33 +96,28 @@ void bellmanFord(Graph* g, int src){
 }
 
 int main(){
-    int V =  6;
-    int E = 8;
+    int V = 5;
+    int E = 7;
     Graph* g = createGraph(V, E);
 
-    addEdge (g, 0, 1, -1, 0);
-    addEdge (g, 0, 2, 4, 1);
-    addEdge (g, 1, 2, 3, 2);
-    addEdge (g, 1, 3, 2, 3);
-    addEdge (g, 1, 4, 2, 4);
-    addEdge (g, 3, 2, 5, 5);
-    addEdge (g, 3, 5, 4, 6);
-    addEdge (g, 4, 3, -3, 7);
+    addEdge (g,0,1,2,0);
+    addEdge (g,0,2,-1,1);
+    addEdge (g,1,2,3,2);
+    addEdge (g,1,3,5,3);
+    addEdge (g,2,3,2,4);
+    addEdge (g,2,4,4,5);
+    addEdge (g,3,4,3,6);
+
+    cout << "NODOS:\nA = 0\tB = 1\tC = 2\tD = 3\tE = 4\n";
 
     cout << "Matriz de adyacencia: " << endl;
     vector<vector<int>> matrix(V, vector<int>(V, INT_MAX));
     for(int i = 0; i < E; i++){
         matrix[g->edges[i].src][g->edges[i].dst] = g->edges[i].w;
-   }
+    }
    printMatrix(matrix);
 
    cout << "\nResultado de Bellman-Ford\n";
    bellmanFord(g,0);
    return 0;
-
 }
-
-
-
-
-
